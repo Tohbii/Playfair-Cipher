@@ -176,7 +176,11 @@ export default function App() {
       });
 
       setGrid(data.grid);               // use server-generated grid
-      setResult(data.result);
+     // Clean up Playfair padding artifacts before displaying
+      const cleanResult = data.result
+        .replace(/X$/, "")      // remove trailing X that was added as padding
+        .replace(/XX$/, "");    // handle double X padding edge case
+      setResult(cleanResult);
       setSteps(data.steps);
       setDigraph(data.digraph_display);
       setMode(selectedMode);
