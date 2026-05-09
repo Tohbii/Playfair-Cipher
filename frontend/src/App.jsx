@@ -16,7 +16,7 @@ import axios from "axios";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
-const API_URL = "https://playfair-cipher-gv91.onrender.com";
+const API_URL = "http://localhost:8000/cipher";
 
 /** Build key square client-side for the live preview (mirrors Python logic). */
 function buildKeySquare(keyword) {
