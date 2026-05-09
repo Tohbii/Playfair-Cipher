@@ -162,7 +162,7 @@ useEffect(() => {
   if (!result || mode !== "decrypt") return;
   const interval = setInterval(() => {
     setNoteIndex(prev => prev === 0 ? 1 : 0);
-  }, 3000); // switches every 3 seconds
+  }, 5000); // switches every 5 seconds
   return () => clearInterval(interval); // cleanup on unmount
 }, [result, mode]);
 
