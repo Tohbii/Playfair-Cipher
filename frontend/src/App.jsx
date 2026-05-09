@@ -257,10 +257,9 @@ export default function App() {
               </button>
             </div>
 
-            {mode === "decrypt" && result && (
+           {result && mode === "decrypt" && (
           <p className="text-xs text-gray-400 mt-1">
-            Note: X may appear as a filler inserted during encryption. 
-            Read around them to find the original message.
+            Note: I and J are treated as the same letter in Playfair — interpret based on context. Trailing X is padding.
           </p>
         )}
 
