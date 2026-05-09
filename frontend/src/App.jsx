@@ -257,6 +257,13 @@ export default function App() {
               </button>
             </div>
 
+            {mode === "decrypt" && result && (
+          <p className="text-xs text-gray-400 mt-1">
+            Note: X may appear as a filler inserted during encryption. 
+            Read around them to find the original message.
+          </p>
+        )}
+
             {/* Error */}
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-800 text-sm rounded-lg px-3 py-2">
