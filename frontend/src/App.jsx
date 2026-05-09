@@ -14,6 +14,8 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
+
+
 // ── Constants ────────────────────────────────────────────────────────────────
 
 const API_URL = "https://playfair-cipher-gv91.onrender.com/cipher";
@@ -149,6 +151,21 @@ export default function App() {
     }
   }, [keyword]);
 
+  const [noteIndex, setNoteIndex] = useState(0);
+
+const notes = [
+  "Note: X may appear as a filler inserted during encryption — read around them to find the original message.",
+  "Note: I and J are treated as the same letter in Playfair — interpret based on context. Trailing X is padding."
+];
+
+useEffect(() => {
+  if (!result || mode !== "decrypt") return;
+  const interval = setInterval(() => {
+    setNoteIndex(prev => prev === 0 ? 1 : 0);
+  }, 3000); // switches every 3 seconds
+  return () => clearInterval(interval); // cleanup on unmount
+}, [result, mode]);
+
   /** Compute the cell-highlight sets for the currently selected step. */
   const getHighlight = useCallback(() => {
     if (activeStep === null || !steps[activeStep]) return null;
@@ -257,11 +274,11 @@ export default function App() {
               </button>
             </div>
 
-           {result && mode === "decrypt" && (
-          <p className="text-xs text-gray-400 mt-1">
-            Note: I and J are treated as the same letter in Playfair — interpret based on context. Trailing X is padding.
-          </p>
-        )}
+                    {result && mode === "decrypt" && (
+            <p className="text-xs text-gray-400 mt-1 transition-all duration-500">
+              {notes[noteIndex]}
+            </p>
+          )}
 
             {/* Error */}
             {error && (
